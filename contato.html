@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Restaurante Barbina</title>
+    
+    <!-- Fontes (Cormorant Garamond para títulos, Montserrat para corpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icones Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Estilos Próprios -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <h1>BARBINA</h1>
+                <span>RESTAURANTE & EXPERIÊNCIAS</span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="cardapio.html">Cardápio</a></li>
+                    <li><a href="reservas.html">Reservas</a></li>
+                    <li><a href="contato.html" class="active">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-page" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ee17?auto=format&fit=crop&w=1920&q=80');">
+        <div class="hero-content">
+            <h2>Fale Conosco</h2>
+            <p>Estamos ansiosos para ouvir você e responder suas dúvidas.</p>
+        </div>
+    </section>
+
+    <section class="contato-info">
+        <div class="container">
+            <div class="section-header">
+                <h2>Informações Essenciais</h2>
+                <p>Entre em contato por telefone, e-mail ou venha nos visitar.</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card anim-fade-up">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Localização</h3>
+                    <p>Av. Pedro Ometto, 700 - Centro, Barra Bonita - SP, 17340-001</p>
+                    <a href="https://maps.app.goo.gl/seu-endereco-aqui" target="_blank">Ver no Mapa</a>
+                </div>
+                <div class="info-card anim-fade-up">
+                    <i class="fas fa-phone"></i>
+                    <h3>Telefone</h3>
+                    <p>Reservas: (14) 9999-9999</p>
+                    <p>Geral: (14) 3641-0000</p>
+                </div>
+                <div class="info-card anim-fade-up">
+                    <i class="fas fa-envelope"></i>
+                    <h3>E-mail</h3>
+                    <p>contato@barbina.com</p>
+                    <p>reservas@barbina.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="mapa-localizacao" style="padding: 0;">
+        <div class="container">
+            <div class="mapa-placeholder" style="height: 500px; background: url('https://maps.googleapis.com/maps/api/staticmap?center=-22.4934,-48.5675&zoom=15&size=1280x500&maptype=roadmap&markers=color:red%7Clabel:B%7C-22.4934,-48.5675&key=YOUR_API_KEY_HERE') center center / cover no-repeat; border-radius: 10px; box-shadow: var(--shadow);">
+                <!-- Placeholder para o mapa. Recomenda-se incorporar um mapa interativo real. -->
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Perguntas Frequentes</h2>
+                <p>Respostas rápidas para as dúvidas mais comuns.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item anim-fade-up">
+                    <div class="faq-pergunta">
+                        <h3>Qual o horário de funcionamento?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>Funcionamos de segunda a sexta das 11h às 23h, e aos sábados e domingos das 12h às 00h. Verifique em feriados e datas especiais.</p>
+                    </div>
+                </div>
+                <div class="faq-item anim-fade-up">
+                    <div class="faq-pergunta">
+                        <h3>Precisa fazer reserva?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>Recomendamos fortemente as reservas, especialmente aos fins de semana e para grupos grandes, para garantir sua mesa. Você pode reservar online através da nossa página de Reservas.</p>
+                    </div>
+                </div>
+                 <div class="faq-item anim-fade-up">
+                    <div class="faq-pergunta">
+                        <h3>Tem opções vegetarianas/veganas?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>Sim! Nosso chef preparou diversas opções vegetarianas e veganas que se destacam no cardápio. Não hesite em perguntar ao nosso staff sobre as opções do dia.</p>
+                    </div>
+                </div>
+                 <div class="faq-item anim-fade-up">
+                    <div class="faq-pergunta">
+                        <h3>O restaurante possui estacionamento?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>Sim, oferecemos serviço de valet e temos um estacionamento conveniado próximo ao local para maior comodidade dos nossos clientes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BARBINA</h3>
+                    <p>Restaurante & Experiências</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Horários</h4>
+                    <p><i class="fas fa-clock"></i> Segunda a Sexta: 11h às 23h</p>
+                    <p><i class="fas fa-clock"></i> Sábado e Domingo: 12h às 00h</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Pedro Ometto, 700 - Centro, Barra Bonita - SP, 17340-001</p>
+                    <p><i class="fas fa-phone"></i> (14) 9999-9999</p>
+                    <p><i class="fas fa-envelope"></i> contato@barbina.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Restaurante Barbina. Todos os direitos reservados. | Design Modernizado por Manus</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
