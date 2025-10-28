@@ -1,36 +1,56 @@
-// VALIDAÇÃO E MÁSCARA DO FORMULÁRIO DE RESERVA
 document.addEventListener('DOMContentLoaded', function() {
     const reservaForm = document.getElementById('reservaForm');
     
     if (reservaForm) {
+        // ocupar/ocultar detalhes do evento com base na seleção do tipo de reserva
+        
+        const tipoReservaRadios = document.querySelectorAll('input[name="tipoReserva"]');
+        const detalhesEventoDiv = document.getElementById('detalhesEvento');
+        const tipoEventoSelect = document.getElementById('tipoEvento');
+
+        function toggleDetalhesEvento() {
+            const selectedOption = document.querySelector('input[name="tipoReserva"]:checked').value;
+            
+            if (selectedOption === 'evento') {
+                detalhesEventoDiv.style.display = 'block';
+                tipoEventoSelect.required = true;
+            } else {
+                detalhesEventoDiv.style.display = 'none';
+                tipoEventoSelect.required = false;
+            }
+        }
+
+        tipoReservaRadios.forEach(radio => {
+            radio.addEventListener('change', toggleDetalhesEvento);
+        });
+        
+        // validar formulário e simular envio
         reservaForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const nome = document.getElementById('nome').value;
             const data = document.getElementById('data').value;
-            
-            if (!nome || !data) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                return;
-            }
-            
             // Validação de data (não pode ser no passado)
             const dataReserva = new Date(data + 'T00:00:00');
             const hoje = new Date();
-            hoje.setHours(0, 0, 0, 0);
-            
+            hoje.setHours(0, 0, 0, 0); 
             if (dataReserva < hoje) {
                 alert('A data da reserva não pode ser no passado. Por favor, selecione uma data futura.');
                 return;
             }
-            
             // Simulação de envio
             const dataFormatada = new Date(dataReserva).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
             alert(`Obrigado, ${nome}! Sua solicitação de reserva para ${dataFormatada} foi enviada com sucesso. Entraremos em contato em breve para confirmação.`);
+            
             reservaForm.reset();
+
+            // Chamar a função aqui garante que o campo de evento suma ao resetar o form
+            toggleDetalhesEvento();
         });
 
-        // Formatação automática do telefone
+        
+        // formatação dinâmica do campo de telefone
+        
         const telefoneInput = document.getElementById('telefone');
         if (telefoneInput) {
             telefoneInput.addEventListener('input', function(e) {
@@ -50,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Data mínima selecionável no input date
+        // configurar data mínima para hoje  
         const dataInput = document.getElementById('data');
         if (dataInput) {
             const hoje = new Date().toISOString().split('T')[0];
