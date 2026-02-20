@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbina · Backoffice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin-style.css">
+    <style>
+        /* centralização exclusiva para login */
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--bg);
+            padding: 1.5rem;
+        }
+        .login-wrapper {
+            width: 100%;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body class="login-page">
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-brand">
+                <span class="brand-dot"></span>
+                <h1>Barbina<span>OS</span></h1>
+            </div>
+            <p class="login-welcome">acesso à administração</p>
+            <form id="loginForm">
+                <div class="field">
+                    <label>Usuário</label>
+                    <input type="text" id="username" placeholder="marquetobeluga" autocomplete="off">
+                </div>
+                <div class="field">
+                    <label>Senha</label>
+                    <input type="password" id="password" placeholder="••••">
+                </div>
+                <button type="submit" class="btn-primary btn-full">Acessar dashboard</button>
+                <p class="login-helper">marquetobeluga / 1234</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            if (user === 'marquetobeluga' && pass === '1234') {
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Credenciais inválidas');
+            }
+        });
+    </script>
+</body>
+</html>

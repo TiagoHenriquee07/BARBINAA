@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbina · ERP Administrativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- sidebar profissional -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-marca"></span>
+                    <span class="logo-texto">Barbina<span>OS</span></span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="tab1">Dashboard</button>
+                <button class="nav-item" data-tab="tab2">Financeiro</button>
+                <button class="nav-item" data-tab="tab3">Reservas</button>
+                <button class="nav-item" data-tab="tab4">Cardápio</button>
+                <button class="nav-item" data-tab="tab5">Estoque</button>
+                <button class="nav-item" data-tab="tab6">Equipe</button>
+            </nav>
+
+            <!-- area do avatar -->
+            <div class="sidebar-user" id="userMenuTrigger">
+                <div class="user-avatar">
+                    <img src="https://ui-avatars.com/api/?name=MB&length=2&background=9A8456&color=fff&size=128" alt="Avatar">
+                </div>
+                <div class="user-info">
+                    <span class="user-name">Marques Beluga</span>
+                    <span class="user-role">Diretor</span>
+                </div>
+            </div>
+
+            <!-- menu dropdown do usuario -->
+            <div class="user-dropdown" id="userDropdown">
+                <div class="dropdown-header">
+                    <span class="dropdown-name">Marques Beluga</span>
+                    <span class="dropdown-email">m.beluga@barbina.com</span>
+                </div>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="btnPerfil">Meu perfil</button>
+                <button class="dropdown-item" id="btnConfig">Configurações</button>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="btnSite">🌐 Site principal</button>
+                <button class="dropdown-item logout" id="btnLogout">Sair</button>
+            </div>
+        </aside>
+
+        <!-- conteudo principal -->
+        <main class="main-content" id="mainContent">
+            <!-- renderizacao dinamica via js -->
+        </main>
+    </div>
+
+    <!-- modais -->
+    <div class="modal-overlay" id="modalPrato">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Novo prato</h2>
+                <button class="modal-close" data-modal="modalPrato">&times;</button>
+            </div>
+            <form id="formPrato">
+                <div class="modal-body">
+                    <div class="field">
+                        <label>url da imagem</label>
+                        <input type="url" id="pratoFoto" placeholder="https://exemplo.com/foto.jpg">
+                    </div>
+                    <div class="field">
+                        <label>nome do prato</label>
+                        <input type="text" id="pratoNome" placeholder="ex: Ravióli de cordeiro" required>
+                    </div>
+                    <div class="field">
+                        <label>descrição</label>
+                        <textarea id="pratoDesc" rows="2" placeholder="ingredientes e detalhes" required></textarea>
+                    </div>
+                    <div class="field">
+                        <label>categoria</label>
+                        <select id="pratoCategoria">
+                            <option>Entradas</option>
+                            <option>Principais</option>
+                            <option>Sobremesas</option>
+                            <option>Bebidas</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>preço (r$)</label>
+                        <input type="number" id="pratoPreco" step="0.01" min="0" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" data-modal="modalPrato">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar prato</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalFuncionario">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Novo funcionário</h2>
+                <button class="modal-close" data-modal="modalFuncionario">&times;</button>
+            </div>
+            <form id="formFuncionario">
+                <div class="modal-body">
+                    <div class="field">
+                        <label>nome completo</label>
+                        <input type="text" id="funcNome" placeholder="ex: Mariana Gold" required>
+                    </div>
+                    <div class="field">
+                        <label>cargo</label>
+                        <input type="text" id="funcCargo" placeholder="ex: Sommelier" required>
+                    </div>
+                    <div class="field">
+                        <label>turno</label>
+                        <select id="funcTurno">
+                            <option>Matutino</option>
+                            <option>Vespertino</option>
+                            <option>Noturno</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>status</label>
+                        <select id="funcStatus">
+                            <option>Ativo</option>
+                            <option>Férias</option>
+                            <option>Afastado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" data-modal="modalFuncionario">Cancelar</button>
+                    <button type="submit" class="btn-primary">Contratar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalReserva">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Nova reserva</h2>
+                <button class="modal-close" data-modal="modalReserva">&times;</button>
+            </div>
+            <form id="formReserva">
+                <div class="modal-body">
+                    <div class="field">
+                        <label>cliente</label>
+                        <input type="text" id="reservaCliente" placeholder="nome completo" required>
+                    </div>
+                    <div class="field">
+                        <label>mesa</label>
+                        <select id="reservaMesa">
+                            <option>selecione data primeiro</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>data e horário</label>
+                        <input type="datetime-local" id="reservaData" required>
+                    </div>
+                    <div class="field">
+                        <label>pessoas</label>
+                        <input type="number" id="reservaPessoas" min="1" max="12" value="2">
+                    </div>
+                    <div class="field">
+                        <label>observações</label>
+                        <textarea id="reservaObs" rows="2" placeholder="alergias, preferências..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" data-modal="modalReserva">Cancelar</button>
+                    <button type="submit" class="btn-primary">Criar reserva</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalPerfil">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Meu perfil</h2>
+                <button class="modal-close" data-modal="modalPerfil">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; gap: 1.5rem; align-items: center;">
+                    <img src="https://ui-avatars.com/api/?name=Marques+Beluga&background=9A8456&color=fff&size=96" style="width: 80px; height: 80px; border-radius: 50%;">
+                    <div>
+                        <h3 style="font-family: 'Playfair Display'; margin-bottom: 0.25rem;">Marques Beluga</h3>
+                        <p style="color: #6B6F76;">m.beluga@barbina.com · admin desde 2022</p>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <p><strong>último acesso:</strong> 19/02/2026 18:32</p>
+                    <p><strong>permissões:</strong> gestão total</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" data-modal="modalPerfil">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalEstoqueMov">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Movimentar estoque</h2>
+                <button class="modal-close" data-modal="modalEstoqueMov">&times;</button>
+            </div>
+            <form id="formMovEstoque">
+                <div class="modal-body">
+                    <div class="field">
+                        <label>insumo</label>
+                        <select id="movInsumo" required>
+                            <option>Camarão rosa</option>
+                            <option>Trufa negra</option>
+                            <option>Queijo parmesão</option>
+                            <option>Vinho tinto</option>
+                            <option>Manteiga</option>
+                            <option>Farinha</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>tipo de movimento</label>
+                        <select id="movTipo">
+                            <option>Entrada</option>
+                            <option>Saída</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>quantidade</label>
+                        <input type="text" id="movQtd" placeholder="ex: 500g, 2kg, 10 un">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" data-modal="modalEstoqueMov">Cancelar</button>
+                    <button type="submit" class="btn-primary">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin-main.js"></script>
+</body>
+</html>
