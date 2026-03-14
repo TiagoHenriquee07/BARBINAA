@@ -429,58 +429,72 @@ section {
     color: var(--dark-color);
 }
 
-/* FOOTER */
+
 .footer {
     background: var(--dark-color);
     color: var(--white);
-    padding: 80px 0 30px;
+    padding: 60px 0 30px; 
+    border-top: 1px solid rgba(154, 132, 86, 0.2); 
 }
+
 .footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1.5fr;
-    gap: 50px;
-    margin-bottom: 60px;
+    display: flex; 
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 40px;
 }
+
+.footer-section {
+    flex: 1; /* Cada seção ocupa o mesmo espaço */
+    margin-bottom: 0;
+}
+
 .footer-section h3, .footer-section h4 {
     font-family: var(--font-headings);
     color: var(--primary-color);
-    margin-bottom: 25px;
-    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
     font-weight: 700;
 }
+
 .footer-section p {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
     opacity: 0.8;
-    font-weight: 300;
-}
-.footer-section i {
-    color: var(--primary-color);
-}
-.social-links {
-    display: flex;
-    gap: 20px;
-    margin-top: 30px;
-}
-.social-links a {
-    color: var(--white);
-    font-size: 1.6rem;
-    transition: var(--transition);
-}
-.social-links a:hover {
-    color: var(--primary-color);
-    transform: scale(1.1);
-}
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    opacity: 0.6;
-    font-size: 0.9rem;
 }
 
+.admin-access {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    transition: var(--transition);
+    color: var(--white);
+}
+
+.admin-access:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+.admin-access {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    transition: var(--transition);
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.admin-access:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
 /* PÁGINA CARDÁPIO */
 .menu { background: var(--white); }
 .menu-categories {

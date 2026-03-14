@@ -1,10 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // EFEITO DO HEADER AO ROLAR A PÁGINA (Mantido)
+    
+    // === MARCADOR DE PÁGINA ATIVA (NOVO) ===
+    const currentPath = window.location.pathname.split("/").pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav a');
+
+    navLinks.forEach(link => {
+        // Remove qualquer classe active existente primeiro
+        link.classList.remove('active');
+        
+        // Verifica se o href do link coincide com a página atual
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+
+    // EFEITO DO HEADER AO ROLAR A PÁGINA
     const header = document.querySelector('.header');
     if (header) {
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
-                header.style.backgroundColor = 'rgba(30, 30, 30, 0.95)'; // dark-color com transparência
+                header.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
                 header.style.backdropFilter = 'blur(5px)';
             } else {
                 header.style.backgroundColor = 'var(--dark-color)';
@@ -13,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // MENU MOBILE (Ajustado para o novo CSS)
+    // MENU MOBILE
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.nav');
     if (menuToggle && nav) {
@@ -25,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
             icon.classList.toggle('fa-times');
         });
         
-        // Fechar menu ao clicar em um link
         nav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
@@ -37,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ANIMAÇÃO DE ELEMENTOS AO APARECER NA TELA (Mantido)
+    // ANIMAÇÃO DE ELEMENTOS AO APARECER NA TELA
     const animatedElements = document.querySelectorAll('.anim-fade-up');
     if (animatedElements.length > 0) {
         const observer = new IntersectionObserver(function(entries) {
@@ -54,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // NAVEGAÇÃO DO CARDÁPIO (Mantido)
+    // NAVEGAÇÃO DO CARDÁPIO
     const menuCategories = document.querySelector('.menu-categories');
     if (menuCategories) {
         const categoryBtns = document.querySelectorAll('.category-btn');
@@ -74,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Ativar a categoria correta ao carregar a página com hash
         const hash = window.location.hash.substring(1);
         if (hash) {
             const initialButton = document.querySelector(`.category-btn[data-category="${hash}"]`);
@@ -84,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // FAQ ACCORDION (Mantido e ajustado para o novo CSS)
+    // FAQ ACCORDION
     const faqList = document.querySelector('.faq-list');
     if (faqList) {
         const faqPerguntas = document.querySelectorAll('.faq-pergunta');
@@ -95,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const resposta = this.nextElementSibling;
                 const isActive = faqItem.classList.contains('active');
                 
-                // Fecha todos os outros itens antes de abrir um novo
                 document.querySelectorAll('.faq-item').forEach(item => {
                     if (item !== faqItem) {
                         item.classList.remove('active');
@@ -103,7 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                // Alterna o item clicado
                 if (!isActive) {
                     faqItem.classList.add('active');
                     resposta.style.maxHeight = resposta.scrollHeight + "px";

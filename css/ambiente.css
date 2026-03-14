@@ -1,0 +1,123 @@
+.galeria-hero {
+    height: 60vh;
+    /* Imagem do Salão Principal na abertura */
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('http://googleusercontent.com/image_collection/image_retrieval/13851076809210648340_0');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    margin-top: 80px;
+}
+
+.galeria-hero-content h2 {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.galeria-hero-content p {
+    font-family: var(--font-headings);
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+.galeria-completa {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.galeria-ambiente {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    margin-bottom: 120px;
+}
+
+.galeria-ambiente:last-child {
+    margin-bottom: 0;
+}
+
+.galeria-ambiente:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.galeria-ambiente-img {
+    flex: 1.2;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    height: 450px;
+}
+
+.galeria-ambiente-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.galeria-ambiente:hover .galeria-ambiente-img img {
+    transform: scale(1.1);
+}
+
+.galeria-ambiente-img::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px solid rgba(154, 132, 86, 0.3);
+    pointer-events: none;
+    border-radius: 10px;
+}
+
+.galeria-ambiente-info {
+    flex: 1;
+}
+
+.galeria-ambiente-info h3 {
+    font-size: 3rem;
+    color: var(--dark-color);
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.galeria-ambiente-info h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    margin-top: 10px;
+}
+
+.galeria-ambiente-info p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--secondary-color);
+    text-align: justify;
+}
+
+@media (max-width: 992px) {
+    .galeria-ambiente, 
+    .galeria-ambiente:nth-child(even) {
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 80px;
+    }
+
+    .galeria-ambiente-img {
+        width: 100%;
+        height: 350px;
+    }
+
+    .galeria-hero-content h2 {
+        font-size: 2.8rem;
+    }
+}
