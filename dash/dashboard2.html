@@ -1,146 +1,84 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbina CMS v2 | Gestão Profissional</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Barbina CMS | Painel Administrativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="admin-style-v2.css">
 </head>
 <body>
-    <div class="app">
+    <div class="dashboard-container">
+        <!-- SIDEBAR FIXA -->
         <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <span class="logo-marca"></span>
-                    <span class="logo-texto">Barbina<span>CMS</span></span>
-                </div>
+            <div class="sidebar-logo">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text">Barbina</span>
+                <span class="logo-badge">CMS</span>
             </div>
+            
             <nav class="sidebar-nav">
-                <button class="nav-item active" data-tab="visao-geral"><i class="fas fa-chart-line"></i> Visão Geral</button>
-                <button class="nav-item" data-tab="reservas"><i class="fas fa-calendar-check"></i> Reservas</button>
-                <button class="nav-item" data-tab="cardapio"><i class="fas fa-utensils"></i> Cardápio</button>
-                <button class="nav-item" data-tab="biblioteca"><i class="fas fa-images"></i> Biblioteca de Fotos</button>
+                <a href="#" class="nav-item active" data-module="overview">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Visão Geral</span>
+                </a>
+                <a href="#" class="nav-item" data-module="reservations">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Reservas</span>
+                </a>
+                <a href="#" class="nav-item" data-module="menu">
+                    <i class="fas fa-utensils"></i>
+                    <span>Cardápio</span>
+                </a>
+                <a href="#" class="nav-item" data-module="environments">
+                    <i class="fas fa-images"></i>
+                    <span>Ambientes & Carrossel</span>
+                </a>
             </nav>
             
-            <div class="sidebar-footer">
-                <div class="sidebar-user">
-                    <div class="user-avatar">TH</div>
-                    <div class="user-info">
-                        <span class="user-name">Tiago Henrique</span>
-                        <span class="user-role">Diretor Geral</span>
-                    </div>
+            <!-- Card de Perfil do Administrador -->
+            <div class="sidebar-profile">
+                <div class="profile-avatar">
+                    <img src="https://ui-avatars.com/api/?background=9A8456&color=fff&bold=true&size=48&name=Admin+Barbina" alt="Admin">
                 </div>
+                <div class="profile-info">
+                    <h4>Marcelo 244</h4>
+                    <p>Gerente Geral</p>
+                </div>
+                <button class="profile-logout" id="logoutBtn" title="Sair">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
             </div>
         </aside>
-
-        <main class="main-content" id="mainContent">
-            </main>
-    </div>
-
-    <div class="modal-overlay" id="modalReserva">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('modalReserva')">&times;</button>
-            <div class="modal-header"><h2 id="modalReservaTitulo">Nova Reserva</h2></div>
-            <form id="formReserva">
-                <input type="hidden" id="editReservaId">
-                <div class="modal-body">
-                    <div class="field"><label>Cliente</label><input type="text" id="resNome" required></div>
-                    <div class="row-fields">
-                        <div class="field"><label>Data</label><input type="date" id="resData" required></div>
-                        <div class="field"><label>Hora</label><input type="time" id="resHora" required></div>
-                    </div>
-                    <div class="row-fields">
-                        <div class="field"><label>Pessoas</label><input type="number" id="resPessoas" min="1" max="20" required></div>
-                        <div class="field">
-                            <label>Mesa Disponível</label>
-                            <select id="resMesa" required><option value="">Selecione data e hora...</option></select>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>Status</label>
-                        <select id="resStatus">
-                            <option value="confirmada">Confirmada</option>
-                            <option value="pendente">Pendente</option>
-                        </select>
-                    </div>
+        
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1 id="pageTitle">Visão Geral</h1>
+                <div class="header-actions">
+                    <div class="date-time" id="currentDateTime"></div>
+                    <button class="btn-refresh" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
                 </div>
-                <div class="modal-footer"><button type="submit" class="btn-primary">Finalizar Reserva</button></div>
-            </form>
+            </header>
+            
+            <div class="content-area" id="contentArea">
+                <!-- Conteúdo dinâmico renderizado via JS -->
+            </div>
+        </main>
+    </div>
+    
+    <!-- MODAL GLOBAL -->
+    <div class="modal" id="globalModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <div id="modalBody"></div>
         </div>
     </div>
-
-    <div class="modal-overlay" id="modalPrato">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('modalPrato')">&times;</button>
-            <div class="modal-header"><h2 id="modalPratoTitulo">Novo Prato</h2></div>
-            <form id="formPrato">
-                <input type="hidden" id="editPratoId">
-                <div class="modal-body">
-                    <div class="field">
-                        <label>Imagem do Prato</label>
-                        <input type="url" id="pratoImg" placeholder="Link da imagem...">
-                        <div class="upload-box">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <span>Ou clique para carregar arquivo</span>
-                            <input type="file" id="pratoFile" accept="image/*">
-                        </div>
-                    </div>
-                    <div class="field"><label>Nome do Prato</label><input type="text" id="pratoNome" required></div>
-                    <div class="row-fields">
-                        <div class="field">
-                            <label>Categoria</label>
-                            <select id="pratoCat">
-                                <option>Entradas</option><option>Principais</option><option>Sobremesas</option><option>Bebidas</option>
-                            </select>
-                        </div>
-                        <div class="field"><label>Preço (R$)</label><input type="number" step="0.01" id="pratoPreco" required></div>
-                    </div>
-                </div>
-                <div class="modal-footer"><button type="submit" class="btn-primary">Salvar no Cardápio</button></div>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="modalBiblioteca">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('modalBiblioteca')">&times;</button>
-            <div class="modal-header"><h2>Adicionar à Biblioteca</h2></div>
-            <form id="formBiblioteca">
-                <div class="modal-body">
-                    <div class="field">
-                        <label>Onde esta foto será usada?</label>
-                        <select id="fotoArea" onchange="toggleSmartFields()" required>
-                            <option value="" disabled selected>Escolha a página...</option>
-                            <option value="home">Home</option>
-                            <option value="cardapio">Cardápio</option>
-                            <option value="ambientes">Ambientes</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label>Imagem</label>
-                        <input type="url" id="fotoUrl" placeholder="Link da imagem...">
-                        <div class="upload-box">
-                            <i class="fas fa-image"></i>
-                            <span>Carregar do Computador</span>
-                            <input type="file" id="fotoFile" accept="image/*">
-                        </div>
-                    </div>
-                    <div id="smart-home" class="smart-group" style="display:none">
-                        <div class="field"><label>Título Destaque</label><input type="text" id="homeTitulo"></div>
-                        <div class="field"><label>Legenda</label><input type="text" id="homeLegenda"></div>
-                    </div>
-                    <div id="smart-cardapio" class="smart-group" style="display:none">
-                        <div class="field"><label>Nome do Prato</label><input type="text" id="smartCardNome"></div>
-                        <div class="field"><label>Preço</label><input type="number" step="0.01" id="smartCardPreco"></div>
-                    </div>
-                </div>
-                <div class="modal-footer"><button type="submit" class="btn-primary">Publicar Foto</button></div>
-            </form>
-        </div>
-    </div>
-
+    
     <script src="admin-main-v2.js"></script>
 </body>
 </html>
