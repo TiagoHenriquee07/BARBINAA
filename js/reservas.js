@@ -9,13 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const tipoEventoSelect = document.getElementById('tipoEvento');
 
         function toggleDetalhesEvento() {
-            const selectedOption = document.querySelector('input[name="tipoReserva"]:checked').value;
-            
+            if (!detalhesEventoDiv || !tipoEventoSelect) return;
+            const checked = document.querySelector('input[name="tipoReserva"]:checked');
+            if (!checked) return;
+            const selectedOption = checked.value;
+
             if (selectedOption === 'evento') {
-                detalhesEventoDiv.style.display = 'block';
+                detalhesEventoDiv.removeAttribute('hidden');
                 tipoEventoSelect.required = true;
             } else {
-                detalhesEventoDiv.style.display = 'none';
+                detalhesEventoDiv.setAttribute('hidden', '');
                 tipoEventoSelect.required = false;
             }
         }
@@ -23,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
         tipoReservaRadios.forEach(radio => {
             radio.addEventListener('change', toggleDetalhesEvento);
         });
-        
+        toggleDetalhesEvento();
+
         // validar formulário e simular envio
         reservaForm.addEventListener('submit', function(e) {
             e.preventDefault();

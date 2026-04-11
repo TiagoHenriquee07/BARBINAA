@@ -83,8 +83,8 @@ let autoInterval;
 function renderCarousel() {
     const container = document.getElementById('carouselContainer');
     const dotsContainer = document.getElementById('carouselDots');
-    if (!container) return;
-    
+    if (!container || !dotsContainer) return;
+
     container.innerHTML = '';
     dotsContainer.innerHTML = '';
     

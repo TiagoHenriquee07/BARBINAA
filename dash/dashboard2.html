@@ -1,84 +1,106 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Painel administrativo Barbina CMS — reservas, cardápio e ambientes.">
     <title>Barbina CMS | Painel Administrativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="admin-style-v2.css">
 </head>
 <body>
+    <a href="#contentArea" class="skip-link">Ir para o conteúdo</a>
+
+    <div id="appLoading" class="app-loading" aria-hidden="true" aria-busy="false">
+        <div class="app-loading__spinner" role="presentation"></div>
+        <span class="sr-only">Carregando…</span>
+    </div>
+
+    <div id="toastHost" class="toast-host" aria-live="polite"></div>
+
     <div class="dashboard-container">
-        <!-- SIDEBAR FIXA -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
             <div class="sidebar-logo">
-                <span class="logo-icon">✦</span>
+                <span class="logo-icon" aria-hidden="true">✦</span>
                 <span class="logo-text">Barbina</span>
                 <span class="logo-badge">CMS</span>
             </div>
-            
+
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item active" data-module="overview">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Visão Geral</span>
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    <span>Visão geral</span>
                 </a>
                 <a href="#" class="nav-item" data-module="reservations">
-                    <i class="fas fa-calendar-alt"></i>
+                    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                     <span>Reservas</span>
                 </a>
                 <a href="#" class="nav-item" data-module="menu">
-                    <i class="fas fa-utensils"></i>
+                    <i class="fas fa-utensils" aria-hidden="true"></i>
                     <span>Cardápio</span>
                 </a>
                 <a href="#" class="nav-item" data-module="environments">
-                    <i class="fas fa-images"></i>
-                    <span>Ambientes & Carrossel</span>
+                    <i class="fas fa-images" aria-hidden="true"></i>
+                    <span>Ambientes &amp; carrossel</span>
                 </a>
             </nav>
-            
-            <!-- Card de Perfil do Administrador -->
+
             <div class="sidebar-profile">
                 <div class="profile-avatar">
-                    <img src="https://ui-avatars.com/api/?background=9A8456&color=fff&bold=true&size=48&name=Admin+Barbina" alt="Admin">
+                    <img src="https://ui-avatars.com/api/?background=9A8456&color=fff&bold=true&size=48&name=Admin+Barbina" alt="">
                 </div>
                 <div class="profile-info">
                     <h4>Marcelo 244</h4>
-                    <p>Gerente Geral</p>
+                    <p>Gerente geral</p>
                 </div>
-                <button class="profile-logout" id="logoutBtn" title="Sair">
-                    <i class="fas fa-sign-out-alt"></i>
+                <button type="button" class="profile-logout" id="logoutBtn" title="Sair">
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                    <span class="sr-only">Sair</span>
                 </button>
             </div>
         </aside>
-        
-        <!-- MAIN CONTENT -->
-        <main class="main-content">
+
+        <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
+
+        <main class="main-content" id="mainContent">
             <header class="main-header">
-                <h1 id="pageTitle">Visão Geral</h1>
+                <div class="main-header__left">
+                    <button type="button" class="btn-sidebar-toggle" id="sidebarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <h1 id="pageTitle">Visão geral</h1>
+                </div>
                 <div class="header-actions">
+                    <div class="header-search" role="search">
+                        <label for="globalSearchInput" class="sr-only">Busca global</label>
+                        <span class="header-search__icon" aria-hidden="true"><i class="fas fa-search"></i></span>
+                        <input type="search" id="globalSearchInput" class="header-search__input" placeholder="Buscar reservas, cardápio, ambientes…" autocomplete="off">
+                        <div id="globalSearchResults" class="header-search__results" hidden></div>
+                    </div>
                     <div class="date-time" id="currentDateTime"></div>
-                    <button class="btn-refresh" id="refreshBtn">
-                        <i class="fas fa-sync-alt"></i>
+                    <button type="button" class="btn-refresh" id="refreshBtn" title="Atualizar painel" aria-label="Atualizar painel">
+                        <i class="fas fa-sync-alt" aria-hidden="true"></i>
                     </button>
                 </div>
             </header>
-            
-            <div class="content-area" id="contentArea">
-                <!-- Conteúdo dinâmico renderizado via JS -->
+
+            <div class="content-area" id="contentArea" tabindex="-1">
+                <!-- Conteúdo dinâmico -->
             </div>
         </main>
     </div>
-    
-    <!-- MODAL GLOBAL -->
-    <div class="modal" id="globalModal">
+
+    <div class="modal" id="globalModal" role="dialog" aria-modal="true">
         <div class="modal-content">
-            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Fechar">&times;</button>
             <div id="modalBody"></div>
         </div>
     </div>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" crossorigin="anonymous"></script>
     <script src="admin-main-v2.js"></script>
 </body>
 </html>

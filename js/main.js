@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const categoryBtns = document.querySelectorAll('.category-btn');
         const menuItems = document.querySelectorAll('.menu-items');
 
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                menuItems.forEach(item => item.classList.remove('active'));
+        categoryBtns.forEach((btn) => {
+            btn.addEventListener('click', function () {
+                categoryBtns.forEach((b) => b.classList.remove('active'));
+                menuItems.forEach((item) => item.classList.remove('active'));
 
                 this.classList.add('active');
                 const category = this.getAttribute('data-category');
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-        
+
         const hash = window.location.hash.substring(1);
         if (hash) {
             const initialButton = document.querySelector(`.category-btn[data-category="${hash}"]`);
@@ -111,9 +111,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelectorAll('.faq-item').forEach(item => {
                     if (item !== faqItem) {
                         item.classList.remove('active');
-                        item.querySelector('.faq-resposta').style.maxHeight = null;
+                        const otherAns = item.querySelector('.faq-resposta');
+                        if (otherAns) otherAns.style.maxHeight = null;
                     }
                 });
+
+                if (!resposta) return;
 
                 if (!isActive) {
                     faqItem.classList.add('active');
